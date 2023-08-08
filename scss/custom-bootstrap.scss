@@ -12,14 +12,13 @@
 @import "../node_modules/bootstrap/scss/utilities";
 //Customizacion:
 $custom-colors: map-merge(
-    $theme-colors,
+    map-merge($theme-colors,$colors),
     (
         "apple": #25c025,
         "light-apple": #c7ffc7
     )
 );
-
-$theme-colors: map-merge($theme-colors, $custom-colors);
+$theme-colors:$custom-colors;
 
 @function editarUtilidades($key, $property, $class, $values) {
     @return map-merge(
@@ -45,6 +44,15 @@ $width: (
     4_5rem: 4.5rem,
     5rem: 5rem,
     5_5rem: 5.5rem,
+    6rem: 6rem,
+    6_5rem: 6.5rem,
+    7rem: 7rem,
+    7_5rem: 7.5rem,
+    8rem: 8rem,
+    8_5rem:8.5rem,
+    9rem:9rem,
+    9_5rem:9.5rem,
+    10rem: 10rem,
     10: 10%,
     20: 20%,
     30: 30%,
@@ -69,6 +77,15 @@ $height: (
     4_5rem: 4.5rem,
     5rem: 5rem,
     5_5rem: 5.5rem,
+    6rem: 6rem,
+    6_5rem: 6.5rem,
+    7rem: 7rem,
+    7_5rem: 7.5rem,
+    8rem: 8rem,
+    8_5rem:8.5rem,
+    9rem:9rem,
+    9_5rem:9.5rem,
+    10rem: 10rem,
     10: 10%,
     20: 20%,
     30: 30%,
@@ -123,11 +140,11 @@ $tamañoTexto: (
     08: 0.8rem,
     09: 0.9rem,
     10: 1rem,
-    11: 2rem,
-    12: 3rem,
-    13: 4rem,
-    14: 5rem,
-    15: 6rem
+    11: 1.5rem,
+    12: 2rem,
+    13: 2.5rem,
+    14: 3rem,
+    15: 3.5rem
 );
 
 $utilities: editarUtilidades("font-size", font-size, fs, $tamañoTexto);

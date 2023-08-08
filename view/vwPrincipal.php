@@ -1,32 +1,11 @@
-<div class="d-flex justify-content-center align-items-center w-100 h-100">
+<!-- <div class="d-flex justify-content-center align-items-center w-100 h-100">
     <img src="./src/assets/img/undraw_nature_m5ll.svg" alt="imagen-principal" style="width: 300px;">
+</div> -->
+
+<h2 class="text-center fs-11">Inicio</h2>
+
+<div class="d-flex gap-3 flex-row row container justify-content-evenly">
+    <a href="?pagina=vwClientes" class="d-flex justify-content-center align-items-center h-4_5rem row col-lg-3 bg-white rounded-4 text-decoration-none text-black p-0">Clientes</a>
+    <a href="?pagina=vwEmpleados" class="d-flex justify-content-center align-items-center h-4_5rem row col-lg-3 bg-white rounded-4 text-decoration-none text-black p-0">Empleados</a>
+    <a href="?pagina=vwProveedores" class="d-flex justify-content-center align-items-center h-4_5rem row col-lg-3 p-0 bg-white rounded-4 text-decoration-none text-black">Proveedores</a>
 </div>
-<!-- <div class="col d-flex flex-column text-center gap-2">
-        <h2>Menu</h2>
-        <div class="row">
-            <div class="col ">
-                <a href="?pagina=vwUsuarios" class="btn w-100 btn-primary">Usuarios</a>
-            </div>
-        
-            <div class="col ">
-                <a href="?pagina=vwClientes" class="btn w-100 btn-primary">Clientes</a>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col ">
-                <a href="?pagina=vwProveedores" class="btn w-100 btn-primary">Proveedores</a>
-            </div>
-    
-            <div class="col ">
-                <a href="?pagina=vwProductos" class="btn w-100 btn-primary">Productos</a>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <a href="?pagina=vwRecepcionProductos" class="btn w-100 btn-primary">Recepción de Productos</a>
-            </div>
-        </div>
-    
-    </div> -->
