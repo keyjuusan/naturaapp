@@ -3,6 +3,7 @@ require_once("DataBase.php");
 
 class mClientes extends DataBase{
     private $nombre;
+    private $nombreAnterior;
     private $cedula;
     private $telefono;
     
@@ -32,14 +33,13 @@ class mClientes extends DataBase{
         $this->conexion()->close();
     }
 
-    public function modificar(){
-        $cModifico = $this->conexion()->query('UPDATE clientes SET 
-        nombre="'.$this->getNombre().'", telefono='.$this->getTelefono().' WHERE nombre='.$this->getNombre());
+    public function actualizar(){
+        $cActualizo = $this->conexion()->query("UPDATE clientes set nombre='".$this->getNombre()."',cedula=".$this->getCedula().",telefono=".$this->getTelefono()." WHERE nombre='".$this->getNombreAnterior()."'");
 
-        if($cModifico){
-            echo $cModifico.": Datos modificados correctamente";
+        if($cActualizo){
+            echo $cActualizo.": Datos actualizados correctamente";
         }else {
-            echo "Error al modificar los datos";
+            echo "Error al actualizar los datos";
         }
 
         $this->conexion()->close();
@@ -63,6 +63,14 @@ class mClientes extends DataBase{
     public function getNombre(){
         return $this->nombre;
     }
+
+    public function setNombreAnterior($nombreAnterior){
+        $this->nombreAnterior = $nombreAnterior;;
+    }
+    public function getNombreAnterior(){
+        return $this->nombreAnterior;
+    }
+
     public function setCedula($cedula){
         $this->cedula = $cedula;
     }

@@ -19,10 +19,14 @@ $(document).ready(() => {
 
     ACCIONES["consultar"]();
 
-    $("#formClientes").on("submit", (e) => {
+    $("#btnRegistrarClientes").on("click", (e) => {
         e.preventDefault()
         ACCIONES["registrar"]("formClientes")
     })
 
+    $("#btnModificarClientes").on("click", (e) => {
+        e.preventDefault()
+        ACCIONES["modificar"]("formClientes")
+    })
 
 })

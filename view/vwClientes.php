@@ -31,6 +31,10 @@
             <div class="row d-flex flex-column justify-content-end">
                 <button type="submit" class="w-100 btn btn-primary " id="btnRegistrarClientes" name="incluir" style="top:32px;">Registrar</button>
             </div>
+
+            <div class="row d-flex flex-column justify-content-end">
+                <button type="submit" class="w-100 d-none btn btn-primary " id="btnModificarClientes" name="incluir" style="top:32px;">Editar</button>
+            </div>
         </div>
     </div>
 </form>
@@ -48,4 +52,7 @@
     <tbody id="tablaClientes">
     </tbody>
 </table>
+
+<div id="loading"></div>
+
 <script type="module" src="./src/js/Clientes/cl_index.js"></script>

@@ -17,8 +17,12 @@ switch ($accion) {
         $cliente->registrar();
         break;
 
-    case'modificar':
-        // $cliente->modificar();
+    case'actualizar':
+        $cliente->setNombre($_POST["nombre"]);
+        $cliente->setNombreAnterior($_POST["nombreAnterior"]);
+        $cliente->setCedula($_POST["cedula"]);
+        $cliente->setTelefono($_POST["telefono"]);
+        $cliente->actualizar();
         break;
 
     case 'eliminar':
