@@ -1,5 +1,5 @@
 <?php
-require_once("DataBase.php");
+require_once("mDataBase.php");
 
 class mClientes extends DataBase{
     private $nombre;
@@ -9,7 +9,7 @@ class mClientes extends DataBase{
     
     public function consultar(){
         $cConsulto = $this->conexion()->query("SELECT * FROM clientes");
-
+ 
         if($cConsulto){
             // echo $cConsulto->fetch_all()[0][0];
             echo json_encode($cConsulto->fetch_all());

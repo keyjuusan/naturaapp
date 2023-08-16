@@ -1,4 +1,5 @@
 let nombreAnterior = ""
+
 export const ACCIONES = {
     "registrar": (formElementId) => {
         const datos = new FormData($(`#${formElementId}`)[0]);
