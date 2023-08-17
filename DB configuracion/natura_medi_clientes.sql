@@ -6,10 +6,10 @@
 
 
 CREATE TABLE `clientes` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(50) NOT NULL,
   `cedula` bigint DEFAULT NULL,
   `telefono` bigint DEFAULT NULL,
-  `nombre` varchar(50) NOT NULL,
-  `id` int NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`id`)
 );
 
@@ -18,8 +18,6 @@ CREATE TABLE `clientes` (
 --
 
 LOCK TABLES `clientes` WRITE;
-
-INSERT INTO `clientes` VALUES (888888888,44444444444,'',1),(209305086,29193405960,'',2),(293249854,99999999999,'',3),(83959209,1209309459,'',4);
 
 UNLOCK TABLES;
 

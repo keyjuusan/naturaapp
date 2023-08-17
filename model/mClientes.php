@@ -3,7 +3,7 @@ require_once("mDataBase.php");
 
 class mClientes extends DataBase{
     private $nombre;
-    private $nombreAnterior;
+    private $id;
     private $cedula;
     private $telefono;
     
@@ -34,7 +34,7 @@ class mClientes extends DataBase{
     }
 
     public function actualizar(){
-        $cActualizo = $this->conexion()->query("UPDATE clientes set nombre='".$this->getNombre()."',cedula=".$this->getCedula().",telefono=".$this->getTelefono()." WHERE nombre='".$this->getNombreAnterior()."'");
+        $cActualizo = $this->conexion()->query("UPDATE clientes set nombre='".$this->getNombre()."',cedula=".$this->getCedula().",telefono=".$this->getTelefono()." WHERE id='".$this->getId()."'");
 
         if($cActualizo){
             echo $cActualizo.": Datos actualizados correctamente";
@@ -46,7 +46,7 @@ class mClientes extends DataBase{
     }
 
     public function eliminar(){
-        $cElimino = $this->conexion()->query("DELETE FROM clientes WHERE nombre='".$this->getNombre()."'");
+        $cElimino = $this->conexion()->query("DELETE FROM clientes WHERE id='".$this->getId()."'");
 
         if($cElimino){
             echo $cElimino.": Datos eliminados correctamente";
@@ -64,11 +64,11 @@ class mClientes extends DataBase{
         return $this->nombre;
     }
 
-    public function setNombreAnterior($nombreAnterior){
-        $this->nombreAnterior = $nombreAnterior;;
+    public function setId($id){
+        $this->id = $id;
     }
-    public function getNombreAnterior(){
-        return $this->nombreAnterior;
+    public function getId(){
+        return $this->id;
     }
 
     public function setCedula($cedula){

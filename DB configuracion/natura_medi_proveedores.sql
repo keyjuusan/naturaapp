@@ -11,7 +11,7 @@
 
 DROP TABLE IF EXISTS `proveedores`;
 CREATE TABLE `proveedores` (
-  `codigo` int NOT NULL,
+  `codigo` int NOT NULL auto_increment,
   `telefono` int DEFAULT NULL,
   `empresa` varchar(50) NOT NULL,
   PRIMARY KEY (`codigo`)

@@ -19,14 +19,14 @@ switch ($accion) {
 
     case'actualizar':
         $cliente->setNombre($_POST["nombre"]);
-        $cliente->setNombreAnterior($_POST["nombreAnterior"]);
+        $cliente->setId($_POST["id"]);
         $cliente->setCedula($_POST["cedula"]);
         $cliente->setTelefono($_POST["telefono"]);
         $cliente->actualizar();
         break;
 
     case 'eliminar':
-        $cliente->setNombre($_POST["nombre"]);
+        $cliente->setId($_POST["id"]);
         $cliente->eliminar();
         break;
     

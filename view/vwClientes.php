@@ -42,6 +42,7 @@
 <table  class="table rounded-3 fs-8">
     <thead>
         <tr>
+            <th scope="col">#</th>
             <th scope="col">Nombre</th>
             <th scope="col">Cedula</th>
             <th scope="col">Telefono</th>
