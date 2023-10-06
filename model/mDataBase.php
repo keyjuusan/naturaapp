@@ -5,19 +5,16 @@ class DataBase
     private $user = "root";
     private $pass = "hEYKER13.";
     private $db = "natura_medi";
-    public $datosClientes;
-    public $clientes;
 
     public function conexion() {
-        $sql = new mysqli($this->host,$this->user,$this->pass,$this->db);
 
-        if($sql->error){
-        echo 'Error al Conectarse a la Base de Datos';
-        }else{
+        try{
+            $sql = new PDO("mysql:host=".$this->host.";dbname=".$this->db,$this->user,$this->pass);
             return $sql;
+        }catch(PDOException $e){
+            die("Error al conectar a la Base de Datos:".$e->getMessage());
         }
        
     }
     
 }
-?>

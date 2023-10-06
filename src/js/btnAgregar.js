@@ -1,7 +1,9 @@
-export function btnAgregar(btnId, formId) {
+export function btnAgregar(btnId, formId,nombreVista) {
     $(`#${btnId}`).on("click", () => {
-        $("#btnRegistrarClientes").removeClass("d-none")
-        $("#btnModificarClientes").addClass("d-none")
+        $("#codigo").removeAttr("disabled")
+
+        $(`#btnRegistrar${nombreVista}`).removeClass("d-none")
+        $(`#btnModificar${nombreVista}`).addClass("d-none")
 
         $(`#${formId}`).css({
             display: "flex",

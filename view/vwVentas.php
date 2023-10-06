@@ -1,3 +1,5 @@
+<?php require_once ("./components/superiorHtml.php")?>
+
 <h2 class="text-center fs-11">Ventas</h2>
 
 <div class="d-flex justify-content-center">
@@ -24,12 +26,22 @@
                 <span class="invalid-feedback" id="shora"></span>
             </div>
 
+        </div>
+
+        <div class="row">
             <div class="col">
                 <label class="form-label" for="costo">Costo:</label>
-                <input class="form-control " type="number" id="costo" name="costo" />
+                <input class="form-control " type="text" id="costo" name="costo" />
                 <span class="invalid-feedback" id="scosto"></span>
             </div>
-
+            
+            <div class="col">
+                <label class="form-label" for="clientes">Cliente:</label>
+                <select class="form-select" name="clientes" id="clientes">
+                    <option value="">--</option>
+                </select>
+                <!-- <span class="invalid-feedback" id="scliente"></span> -->
+            </div>
         </div>
 
         <div class="row">
@@ -42,7 +54,10 @@
 
         <div class="row">
             <div class="col d-flex flex-column justify-content-end">
-                <button type="button" class="w-100 btn btn-primary" id="btnRegistrarVentas" name="incluir">Registrar</button>
+                <button type="submit" class="w-100 btn btn-primary" id="btnRegistrarVentas" name="incluir">Registrar</button>
+            </div>
+            <div class="col d-flex flex-column justify-content-end">
+                <button type="submit" class="w-100 d-none btn btn-primary" id="btnModificarVentas" name="editar">Modificar</button>
             </div>
         </div>
 
@@ -52,30 +67,21 @@
 <table class="table rounded-3 fs-8">
     <thead>
         <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Cedula</th>
-            <th scope="col">Telefono</th>
+            <th scope="col">#</th>
+            <th scope="">Productos</th>
+            <th scope="">Precio</th>
+            <th scope="">Cliente</th>
+            <th scope="">Fecha</th>
+            <th scope="">Hora</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
         </tr>
     </thead>
     <tbody id="tablaVentas">
-        <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>3333333333</td>
-            <td>
-                <button class="btn-sm btn btn-warning ">
-                    <img src="./src/assets/img/edit-svgrepo-com.svg" alt="" width="15">
-                </button>
-            </td>
-            <td>
-                <button class="btn-sm btn btn-danger ">
-                    <img src="./src/assets/img/delete-svgrepo-com.svg" alt="" width="15">
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
+        </tbody>
+    </table>
+    <span class="loader" id="loader"></span>
 
 <script type="module" src="./src/js/Ventas/ve_index.js"></script>
+
+<?php require_once ("./components/inferiorHtml.php")?>

@@ -1,39 +1,16 @@
-<!DOCTYPE html>
-<html lang="es">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="./src/js/jquery.js"></script>
-    <link rel="shortcut icon" href="./src/assets/img/undraw_nature_m5ll.svg" type="image/x-icon">
-    <link href="./src/css/styles.css" rel="stylesheet">
-    <title>Natura App</title>
-</head>
+<?php
+$pagina = "Principal";
 
-<body class="vh-100">
-    <div class="d-flex flex-lg-row flex-column bg-light-apple h-100">
-        <?php
-        include("./comunes/menuSup.php");
-        include("./comunes/menuIzq.php");
-        ?>
+if (!empty($_GET['pagina'])){
+    $pagina = $_GET['pagina'];
+}
 
-        <div id="vwBody" class="d-flex flex-column w-100 container h-100 gap-3 pt-4 align-items-center" style="overflow: auto;">
-            <?php
-            include("./controller/cControllerPage.php");
-            ?>
-        </div>
+if(file_exists("./controller/c".$pagina.".php")){
+    require("./controller/c".$pagina.".php");
+}else{
+    echo "error al traer el controlador al index";
+}
 
-        <?php
-        include("./comunes/menuSub.php")
-        ?>
-    </div>
-
-    <script>
-        //ocultar pestaña publicitaria
-        $(document).ready(() => {
-            document.getElementsByTagName("a")[document.getElementsByTagName("a").length - 1].style.display = "none"
-        })
-    </script>
-</body>
-
-</html>
+?>
+        

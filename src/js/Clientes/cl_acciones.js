@@ -4,7 +4,7 @@ export const ACCIONES = {
         const datos = new FormData($(`#${formElementId}`)[0]);
         datos.append("accion", "registrar");
 
-        fetch("./controller/cClientes.php", {
+        fetch("", {
             method: 'POST',
             body: datos
         })
@@ -20,7 +20,7 @@ export const ACCIONES = {
         const datos = new FormData();
         datos.append("accion", "consultar");
 
-        fetch("./controller/cClientes.php", {
+        fetch("", {
             method: 'POST',
             body: datos
         })
@@ -28,7 +28,7 @@ export const ACCIONES = {
 
                 if (res.ok) {
 
-
+                    $("#loader").hide()
                     return res.json()
                 } else {
                     throw new Error('Error en la conexion');
@@ -38,7 +38,7 @@ export const ACCIONES = {
             .then(data => {
                 $("#tablaClientes")[0].innerHTML = "";
                 data.map(fila => {
-                    console.table(fila)
+                    // console.table(fila)
                     $("#tablaClientes")[0].innerHTML += `<tr id="rowCliente">
             <th scope="row">${fila[0]}</th>
             <td>${fila[1]}</td>
@@ -90,13 +90,13 @@ export const ACCIONES = {
     },
 
     "eliminar": (index) => {
-        const nombreCliente = $("#rowCliente")[index].children[0].textContent;
-        console.log(nombreCliente);
+        const nombreCliente = $("*#rowCliente")[index].children[0].textContent;
+        // console.log(nombreCliente);
         const datos = new FormData();
         datos.append("id", nombreCliente)
         datos.append("accion", "eliminar");
 
-        fetch("./controller/cClientes.php", {
+        fetch("", {
             method: 'POST',
             body: datos
         })
@@ -116,7 +116,7 @@ export const ACCIONES = {
 
         // console.log(nombreClienteAnterior);
         // console.table(datos.entrie);
-        fetch("./controller/cClientes.php", {
+        fetch("", {
             method: 'POST',
             body: datos
         })

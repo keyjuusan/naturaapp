@@ -1,3 +1,5 @@
+<?php require_once ("./components/superiorHtml.php")?>
+
 <h2 class="text-center fs-11">Gastos</h2>
 
 <div class="d-flex justify-content-center">
@@ -52,9 +54,11 @@
 <table class="table rounded-3 fs-8">
     <thead>
         <tr>
-            <th scope="col">Nombre</th>
-            <th scope="col">Cedula</th>
-            <th scope="col">Telefono</th>
+        <th scope="col">#</th>
+            <th scope="col">categoria</th>
+            <th scope="col">fecha</th>
+            <th scope="col">hora</th>
+            <th scope="col">descripcion</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
         </tr>
@@ -62,8 +66,11 @@
     <tbody id="tablaGastos">
         <tr>
             <th scope="row">1</th>
-            <td>Mark</td>
-            <td>3333333333</td>
+            <td>servicio</td>
+            <td>15/02/23</td>
+            <td>1:23</td>
+            <td>publicidad</td>
+
             <td>
                 <button class="btn-sm btn btn-warning ">
                     <img src="./src/assets/img/edit-svgrepo-com.svg" alt="" width="15">
@@ -79,3 +86,5 @@
 </table>
 
 <script type="module" src="./src/js/Gastos/ga_index.js"></script>
+
+<?php require_once ("./components/inferiorHtml.php")?>

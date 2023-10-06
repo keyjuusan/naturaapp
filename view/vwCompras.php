@@ -1,3 +1,5 @@
+<?php require_once ("./components/superiorHtml.php")?>
+
 <h2 class="text-center fs-11">Compras</h2>
 
 <div class="d-flex justify-content-center">
@@ -66,10 +68,10 @@
     <tbody id="tablaCompras">
         <tr>
             <th scope="row">1</th>
-            <td>Mark</td>
-            <td>3333333333</td>
-            <td></td>
-            <td></td>
+            <td>12/08/23</td>
+            <td>1:20</td>
+            <td>3 acetaminofen</td>
+            <td>1.8</td>
             <td>
                 <button class="btn-sm btn btn-warning ">
                     <img src="./src/assets/img/edit-svgrepo-com.svg" alt="" width="15">
@@ -86,3 +88,5 @@
 </table>
 
 <script type="module" src="./src/js/Compras/co_index.js"></script>
+
+<?php require_once ("./components/inferiorHtml.php")?>

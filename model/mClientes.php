@@ -12,12 +12,12 @@ class mClientes extends DataBase{
  
         if($cConsulto){
             // echo $cConsulto->fetch_all()[0][0];
-            echo json_encode($cConsulto->fetch_all());
+            echo json_encode($cConsulto->fetchAll());
         }else{
             echo 'No se pudo realizar la consulta';
         }
 
-        $this->conexion()->close();
+        // $this->conexion()::;
     }
 
     public function registrar(){
@@ -25,36 +25,36 @@ class mClientes extends DataBase{
         ('".$this->nombre."',".$this->telefono.",".$this->cedula.")");
 
         if($cEnvio){
-            echo $cEnvio.": Datos guardados correctamente";
+            echo "Datos guardados correctamente";
         }else {
             echo "Error al insertar datos";
         }
 
-        $this->conexion()->close();
+        // $this->conexion()->close();
     }
 
     public function actualizar(){
         $cActualizo = $this->conexion()->query("UPDATE clientes set nombre='".$this->getNombre()."',cedula=".$this->getCedula().",telefono=".$this->getTelefono()." WHERE id='".$this->getId()."'");
 
         if($cActualizo){
-            echo $cActualizo.": Datos actualizados correctamente";
+            echo "Datos actualizados correctamente";
         }else {
             echo "Error al actualizar los datos";
         }
 
-        $this->conexion()->close();
+        // $this->conexion()->close();
     }
 
     public function eliminar(){
         $cElimino = $this->conexion()->query("DELETE FROM clientes WHERE id='".$this->getId()."'");
 
         if($cElimino){
-            echo $cElimino.": Datos eliminados correctamente";
+            echo "Datos eliminados correctamente";
         }else {
             echo "Error al eliminar los datos";
         }
 
-        $this->conexion()->close();
+        // $this->conexion()->close();
     }
     
     public function setNombre($nombre){

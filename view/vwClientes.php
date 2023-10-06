@@ -1,3 +1,5 @@
+<?php require_once ("./components/superiorHtml.php")?>
+
 <h2 class="text-center fs-11">Clientes</h2>
 
 <div class="d-flex justify-content-center">
@@ -51,9 +53,12 @@
         </tr>
     </thead>
     <tbody id="tablaClientes">
-    </tbody>
-</table>
+        </tbody>
+    </table>
+    <span class="loader" id="loader"></span>
 
 <div id="loading"></div>
 
 <script type="module" src="./src/js/Clientes/cl_index.js"></script>
+
+<?php require_once ("./components/inferiorHtml.php")?>

@@ -6,7 +6,7 @@ import { ACCIONES } from "./cl_acciones.js";
 
 $(document).ready(() => {
     btnAgregar("addClientes", "formClientes");
-    ocultarForm("formClientes");
+    ocultarForm("formClientes","btnRegistrarClientes","btnModificarClientes");
 
     agregarValidacion("cedula", /^[0-9\b]*$/, /^[0-9\b]{7,9}$/, "min 7 y max 9 numeros");
 
