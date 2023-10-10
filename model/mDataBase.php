@@ -4,7 +4,7 @@ class DataBase
     private $host = "localhost";
     private $user = "root";
     private $pass = "hEYKER13.";
-    private $db = "natura_medi";
+    private $db = "natura_medi2";
 
     public function conexion() {
 

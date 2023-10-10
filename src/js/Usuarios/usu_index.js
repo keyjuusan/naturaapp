@@ -1,11 +1,12 @@
 import { agregarValidacion } from "../agregarValidacion.js";
 import { btnAgregar } from "../btnAgregar.js";
 import { ocultarForm } from "../ocultarForm.js";
+import { resetForm } from "../resetForm.js";
 import { validarCampos } from "../validarCampos.js";
 import { ACCIONES } from "./usu_acciones.js";
 
 $(document).ready(()=>{
-    btnAgregar("addUsuarios","formUsuarios");
+    btnAgregar("addUsuarios","formUsuarios","Usuarios");
     ocultarForm("formUsuarios");
 
     agregarValidacion("nombre", /^[a-zA-Z\b]*$/, /^[a-zA-Z\b]{3,}$/,"min 3 caracteres");
@@ -33,10 +34,12 @@ $(document).ready(()=>{
     $("#btnRegistrarUsuarios").on("click", (e) => {
         e.preventDefault()
         ACCIONES["registrar"]("formUsuarios")
+        resetForm("#formUsuarios")
     })
 
     $("#btnModificarUsuarios").on("click", (e) => {
         e.preventDefault()
         ACCIONES["modificar"]("formUsuarios")
+        resetForm("#formUsuarios")
     })
 })

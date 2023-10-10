@@ -1,4 +1,4 @@
-<?php require_once ("./components/superiorHtml.php")?>
+<?php require_once("./components/superiorHtml.php") ?>
 
 <h2 class="text-center fs-11">Usuarios</h2>
 
@@ -23,8 +23,8 @@
                 <label class="form-label" for="cargo">Cargo:</label>
                 <select class="form-select" name="cargo" id="cargo">
                     <option value=""></option>
-                    <option value="gerente">Usuario</option>
-                    <option value="gerente">Gerente</option>
+                    <option value="Usuario">Usuario</option>
+                    <option value="Gerente">Gerente</option>
                 </select>
                 <span class="invalid-feedback" id="scargo"></span>
             </div>
@@ -44,10 +44,12 @@
             </div>
 
         </div>
-        
+
         <div class="row">
             <div class="col d-flex flex-column justify-content-end">
                 <button type="button" class="w-100 btn btn-primary" id="btnRegistrarUsuarios" name="incluir">Registrar</button>
+
+                <button type="button" class="w-100 btn btn-primary d-none" id="btnModificarUsuarios" name="editar">Modificar</button>
             </div>
         </div>
     </div>
@@ -56,16 +58,16 @@
 <table class="table rounded-3 fs-8">
     <thead>
         <tr>
-        <th scope="col">#</th>
+            <th scope="col">#</th>
             <th scope="col">Nombre</th>
-            <th scope="col">cargo</th>
-            <th scope="col">contraseña</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Contraseña</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
         </tr>
     </thead>
     <tbody id="tablaUsuarios">
-        
+
     </tbody>
 </table>
 
@@ -73,4 +75,4 @@
 
 <script type="module" src="./src/js/Usuarios/usu_index.js"></script>
 
-<?php require_once ("./components/inferiorHtml.php")?>
+<?php require_once("./components/inferiorHtml.php") ?>

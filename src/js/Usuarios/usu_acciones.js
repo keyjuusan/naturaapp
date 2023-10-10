@@ -1,4 +1,5 @@
 let Id=""
+let datosConsulta = [];
 export const ACCIONES = {
     "registrar": (formElementId) => {
         const datos = new FormData($(`#${formElementId}`)[0]);
@@ -36,6 +37,7 @@ export const ACCIONES = {
 
             })
             .then(data => {
+                datosConsulta = data;
                 $("#tablaUsuarios")[0].innerHTML = "";
                 data.map(fila => {
                     // console.table(fila)
@@ -45,12 +47,12 @@ export const ACCIONES = {
                     <td>${fila[2]}</td>
                     <td>${fila[3]}</td>
                     <td>
-                        <button class="btn-sm btn btn-warning ">
+                        <button class="btn-sm btn btn-warning " id="btnEditar">
                             <img src="./src/assets/img/edit-svgrepo-com.svg" alt="" width="15">
                         </button>
                     </td>
                     <td>
-                        <button class="btn-sm btn btn-danger ">
+                        <button class="btn-sm btn btn-danger " id="btnEliminar">
                             <img src="./src/assets/img/delete-svgrepo-com.svg" alt="" width="15">
                         </button>
                     </td>
@@ -68,13 +70,15 @@ export const ACCIONES = {
                 $("*#btnEditar").map((id, value) => {
                     $(value).click(() => {
                         const fila = Object.values($("*#rowUsuario")[id].children);
-                        // console.log(typeof fila)
-                        // const MAX_LENGTH = fila.length - 3;
-
-                        $("#nombre")[0].value = fila[1].textContent;
                         Id = fila[0].textContent;
-                        $("#cedula")[0].value = fila[2].textContent;
-                        $("#telefono")[0].value = fila[3].textContent;
+                        let caja= [];
+                        datosConsulta.map((item)=>{
+                            if (item.id == Id) {
+                                caja=item
+                            } 
+                        })
+                        $("#nombre")[0].value = caja.nombre;
+                        $("#cargo")[0].value = caja.cargo;
 
                         $("#btnRegistrarUsuarios").addClass("d-none")
                         $("#btnModificarUsuarios").removeClass("d-none")

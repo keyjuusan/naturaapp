@@ -4,37 +4,38 @@ require_once("mDataBase.php");
 class mUsuarios extends DataBase{
     private $nombre;
     private $id;
-    private $cedula;
-    private $telefono;
+    private $cargo;
+    private $contraseña;
     
     public function consultar(){
-        $cConsulto = $this->conexion()->query("SELECT * FROM usuarios");
- 
-        if($cConsulto){
-            // echo $cConsulto->fetch_all()[0][0];
-            echo json_encode($cConsulto->fetchAll());
-        }else{
-            echo 'No se pudo realizar la consulta';
-        }
 
-        // $this->conexion()::;
+        try {
+            $cConsulto = $this->conexion()->query("SELECT * FROM usuarios");
+            echo json_encode($cConsulto->fetchAll());
+        } catch (PDOException $e) {
+            echo json_encode("Error al consultar en la base de datos: ".$e->getMessage());
+        }
+        
     }
 
     public function registrar(){
-        $cEnvio = $this->conexion()->query("INSERT INTO usuarios(nombre,telefono,cedula) VALUES 
-        ('".$this->nombre."',".$this->telefono.",".$this->cedula.")");
 
-        if($cEnvio){
+        try {
+            $cEnvio = $this->conexion()->query("INSERT INTO usuarios(nombre,cargo,contraseña) VALUES 
+        ('".$this->getNombre()."','".$this->getCargo()."','".$this->getContraseña()."')");
+
             echo "Datos guardados correctamente";
-        }else {
-            echo "Error al insertar datos";
-        }
 
+        } catch (PDOException $e) {
+            
+            echo "Error al insertar datos: ".$e->getMessage();
+        }
+        
         // $this->conexion()->close();
     }
 
     public function actualizar(){
-        $cActualizo = $this->conexion()->query("UPDATE usuarios set nombre='".$this->getNombre()."',cedula=".$this->getCedula().",telefono=".$this->getTelefono()." WHERE id='".$this->getId()."'");
+        $cActualizo = $this->conexion()->query("UPDATE usuarios set nombre='".$this->getNombre()."',cargo=".$this->getCargo().",contraseña=".$this->getcontraseña()." WHERE id='".$this->getId()."'");
 
         if($cActualizo){
             echo "Datos actualizados correctamente";
@@ -71,17 +72,17 @@ class mUsuarios extends DataBase{
         return $this->id;
     }
 
-    public function setCedula($cedula){
-        $this->cedula = $cedula;
+    public function setCargo($cargo){
+        $this->cargo = $cargo;
     }
-    public function getCedula(){
-        return $this->cedula;
+    public function getCargo(){
+        return $this->cargo;
     }
-    public function setTelefono($telefono){
-        $this->telefono = $telefono;
+    public function setContraseña($contraseña){
+        $this->contraseña = $contraseña;
     }
-    public function getTelefono() {
-        return $this->telefono;
+    public function getContraseña() {
+        return $this->contraseña;
     }
     
 

@@ -17,12 +17,12 @@ if(is_file("./view/vw".$pagina.".php")){
                 $usuario->consultar();
                 break;
         
-            // case'registrar':
-            //     $usuario->setNombre($_POST["nombre"]);
-            //     $usuario->setCedula($_POST["cedula"]);
-            //     $usuario->setTelefono($_POST["telefono"]);
-            //     $usuario->registrar();
-            //     break;
+            case'registrar':
+                $usuario->setNombre($_POST["nombre"]);
+                $usuario->setCargo($_POST["cargo"]);
+                $usuario->setContraseña($_POST["rcontraseña"]);
+                $usuario->registrar();
+                break;
         
             // case'actualizar':
             //     $usuario->setNombre($_POST["nombre"]);
