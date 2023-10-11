@@ -27,19 +27,25 @@ $(document).ready(()=>{
     "pass"
     );
 
-    validarCampos("btnRegistrarUsuarios","nombre rcontraseña contraseña");
+    
 
     ACCIONES["consultar"]();
 
     $("#btnRegistrarUsuarios").on("click", (e) => {
-        e.preventDefault()
-        ACCIONES["registrar"]("formUsuarios")
-        resetForm("#formUsuarios")
+        e.preventDefault();
+        let puedeEnviar = validarCampos("nombre rcontraseña contraseña");
+        if(puedeEnviar){
+            ACCIONES["registrar"]("formUsuarios");
+            $("#formUsuarios").hide();
+        }
     })
 
     $("#btnModificarUsuarios").on("click", (e) => {
         e.preventDefault()
-        ACCIONES["modificar"]("formUsuarios")
-        resetForm("#formUsuarios")
+        let puedeEnviar = validarCampos("nombre rcontraseña contraseña");
+        if(puedeEnviar){
+            ACCIONES["modificar"]("formUsuarios");
+            $("#formUsuarios").hide();
+        }
     })
 })

@@ -12,17 +12,25 @@ $(document).ready(()=>{
     
     agregarValidacion("telefono", /^[0-9\b]*$/, /^[0-9\b]{7,11}$/,"min 7 y max 11 numeros");
 
-    validarCampos("btnRegistrarProveedores","empresa nombre telefono");
+    
 
     ACCIONES["consultar"]();
     
     $("#btnRegistrarProveedores").on("click", (e) => {
-        e.preventDefault()
-        ACCIONES["registrar"]("formProveedores")
+        e.preventDefault();
+        let puedeEnviar = validarCampos("empresa nombre telefono");
+        if(puedeEnviar){
+            ACCIONES["registrar"]("formProveedores");
+            $("#formProveedores").hide();
+        }
     })
 
     $("#btnModificarProveedores").on("click", (e) => {
         e.preventDefault()
-        ACCIONES["modificar"]("formProveedores")
+        let puedeEnviar = validarCampos("empresa nombre telefono");
+        if(puedeEnviar){
+            ACCIONES["modificar"]("formProveedores");
+            $("#formProveedores").hide();
+        }
     })
 })

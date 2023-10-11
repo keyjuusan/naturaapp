@@ -30,29 +30,28 @@ class mUsuarios extends DataBase{
             
             echo "Error al insertar datos: ".$e->getMessage();
         }
-        
+
         // $this->conexion()->close();
     }
 
     public function actualizar(){
-        $cActualizo = $this->conexion()->query("UPDATE usuarios set nombre='".$this->getNombre()."',cargo=".$this->getCargo().",contraseña=".$this->getcontraseña()." WHERE id='".$this->getId()."'");
+        try{
+            $this->conexion()->query("UPDATE usuarios set nombre='".$this->getNombre()."',cargo='".$this->getCargo()."',contraseña='".$this->getcontraseña()."' WHERE id='".$this->getId()."'");
 
-        if($cActualizo){
             echo "Datos actualizados correctamente";
-        }else {
-            echo "Error al actualizar los datos";
+        }catch(PDOException $e) {
+            echo "Error al actualizar los datos: ".$e->getMessage();
         }
 
         // $this->conexion()->close();
     }
 
     public function eliminar(){
-        $cElimino = $this->conexion()->query("DELETE FROM usuarios WHERE id='".$this->getId()."'");
-
-        if($cElimino){
+        try{
+            $this->conexion()->query("DELETE FROM usuarios WHERE id='".$this->getId()."'");
             echo "Datos eliminados correctamente";
-        }else {
-            echo "Error al eliminar los datos";
+        }catch(PDOException $e) {
+            echo "Error al eliminar los datos: ".$e->getMessage();
         }
 
         // $this->conexion()->close();

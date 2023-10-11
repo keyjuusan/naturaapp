@@ -1,18 +1,18 @@
 <?php
 require_once "mDataBase.php";
 
-class mVentas extends DataBase{
+class mGastos extends DataBase{
     private $id;
     private $descripcion;
-    private $precio;
+    private $categoria;
+    private $costo;
     private $fecha;
     private $hora;
-    private $clienteId;
     
     public function consultar(){
  
         try{
-            $cConsulto = $this->conexion()->query("select A.id, A.descripcion, A.precio, B.nombre, A.fecha, A.hora, A.id_cliente from ventas A inner join clientes B where A.id_cliente = B.id");
+            $cConsulto = $this->conexion()->query("select * from gastos");
             echo json_encode($cConsulto->fetchAll());
         }catch(PDOException $e){
             echo 'No se pudo realizar la consulta: '.$e->getMessage();
@@ -24,8 +24,8 @@ class mVentas extends DataBase{
     public function registrar(){
 
         try{
-            $this->conexion()->query("INSERT INTO ventas(descripcion,precio,fecha,hora,id_cliente,id_producto,id_empleado) VALUES 
-            ('".$this->getDescripcion()."',".$this->getPrecio().",'".$this->getFecha()."','".$this->getHora()."',".$this->getClienteId().",". 1 .",". 1 .")");
+            $this->conexion()->query("INSERT INTO gastos(descripcion,categoria,costo,fecha,hora,id_empleado) VALUES 
+            ('".$this->getDescripcion()."','".$this->getCategoria()."',".$this->getCosto().",'".$this->getFecha()."','".$this->getHora()."',". 1 .")");
             
             echo "Datos guardados correctamente";
         }catch(PDOException $e) {
@@ -38,7 +38,7 @@ class mVentas extends DataBase{
     public function actualizar(){
 
         try{
-            $this->conexion()->query("UPDATE ventas set descripcion='".$this->getDescripcion()."',precio='".$this->getPrecio()."',fecha='".$this->getFecha()."',hora='".$this->getHora()."',id_cliente=".$this->getClienteId()." WHERE id='".$this->getId()."'");
+            $this->conexion()->query("UPDATE gastos set descripcion='".$this->getDescripcion()."',categoria='".$this->getCategoria()."',costo=".$this->getCosto().",fecha='".$this->getFecha()."',hora='".$this->getHora()."' WHERE id='".$this->getId()."'");
             echo "Datos actualizados correctamente";
         }catch(PDOException $e) {
             echo "Error al actualizar los datos: ".$e->getMessage();
@@ -50,7 +50,7 @@ class mVentas extends DataBase{
     public function eliminar(){
 
         try{
-            $this->conexion()->query("DELETE FROM ventas WHERE id='".$this->getId()."'");
+            $this->conexion()->query("DELETE FROM gastos WHERE id='".$this->getId()."'");
             echo "Datos eliminados correctamente";
         }catch(PDOException $e) {
             echo "Error al eliminar los datos: ".$e->getMessage();
@@ -75,12 +75,20 @@ class mVentas extends DataBase{
         return $this->descripcion;
     }
 
-    public function setPrecio($precio){
-        $this->precio = $precio;
+    public function setCategoria($categoria){
+        $this->categoria = $categoria;
     }
 
-    public function getPrecio(){
-        return $this->precio;
+    public function getCategoria(){
+        return $this->categoria;
+    }
+
+    public function setCosto($costo){
+        $this->costo = $costo;
+    }
+
+    public function getCosto(){
+        return $this->costo;
     }
 
     public function setFecha($fecha){
@@ -99,11 +107,4 @@ class mVentas extends DataBase{
         return $this->hora;
     }
 
-    public function setClienteId($clienteId){
-        $this->clienteId = $clienteId;
-    }
-
-    public function getClienteId(){
-        return $this->clienteId;
-    }
 }

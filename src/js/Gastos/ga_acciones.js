@@ -1,13 +1,16 @@
-let Id=""
+let Id = "";
 let datosConsulta = [];
 export const ACCIONES = {
     "registrar": (formElementId) => {
-        const datos = new FormData($(`#${formElementId}`)[0]);
-        datos.append("accion", "registrar");
-
+        const FD = new FormData($(`#${formElementId}`)[0]);
+        // const datos = Object.fromEntries(FD);
+        // datos.hora = datos.hora.slice(0, 8)
+        // datos.accion = "registrar"
+        // console.log(FD.get("proveedores"))
+        FD.append("accion", "registrar")
         fetch("", {
             method: 'POST',
-            body: datos
+            body: FD
         })
             .then((res) => res.text())
             .then(data => {
@@ -38,25 +41,29 @@ export const ACCIONES = {
             })
             .then(data => {
                 datosConsulta = data;
-                $("#tablaUsuarios")[0].innerHTML = "";
+                $("#tablaGastos")[0].innerHTML = "";
                 data.map(fila => {
-                    // console.table(fila)
-                    $("#tablaUsuarios")[0].innerHTML += `<tr id="rowUsuario">
-                    <th scope="row">${fila[0]}</th>
-                    <td>${fila[1]}</td>
-                    <td>${fila[2]}</td>
-                    <td>${fila[3]}</td>
-                    <td>
-                        <button class="btn-sm btn btn-warning " id="btnEditar">
-                            <img src="./src/assets/img/edit-svgrepo-com.svg" alt="" width="15">
-                        </button>
-                    </td>
-                    <td>
-                        <button class="btn-sm btn btn-danger " id="btnEliminar">
-                            <img src="./src/assets/img/delete-svgrepo-com.svg" alt="" width="15">
-                        </button>
-                    </td>
-                </tr>`
+                    $("#tablaGastos")[0].innerHTML += `<tr id="rowGasto">
+            <th scope="row">${fila.id}</th>
+            <td>${fila.descripcion}</td>
+            <td>${fila.categoria}</td>
+            <td>${fila.costo}$</td>
+            <td>${fila.hora}</td>
+            <td>${fila.fecha}</td>
+            <td>
+                <button id="btnEditar" class="btn-sm btn btn-warning ">
+                    <img src="./src/assets/img/edit-svgrepo-com.svg" alt="" width="15">
+                </button>
+            </td>
+            <td>
+                <button id="btnEliminar" class="btn-sm btn btn-danger ">
+                    <img src="./src/assets/img/delete-svgrepo-com.svg" alt="" width="15">
+                </button>
+            </td>
+        </tr>`
+
+                    
+                    
                 });
 
                 $("*#btnEliminar").map((id, value) => {
@@ -69,23 +76,26 @@ export const ACCIONES = {
 
                 $("*#btnEditar").map((id, value) => {
                     $(value).click(() => {
-                        const fila = Object.values($("*#rowUsuario")[id].children);
+                        const fila = Object.values($("*#rowGasto")[id].children);
                         Id = fila[0].textContent;
-                        let caja= [];
+                        let caja= []
                         datosConsulta.map((item)=>{
                             if (item.id == Id) {
                                 caja=item
                             } 
                         })
-                        $("#nombre")[0].value = caja.nombre;
-                        $("#cargo")[0].value = caja.cargo;
-                        $("#contraseña")[0].value = caja.contraseña;
-                        $("#rcontraseña")[0].value = caja.contraseña;
+                        // console.log(caja);
 
-                        $("#btnRegistrarUsuarios").addClass("d-none")
-                        $("#btnModificarUsuarios").removeClass("d-none")
+                        $("#descripcion")[0].value = caja.descripcion;
+                        $("#categoria")[0].value = caja.categoria;
+                        $("#costo")[0].value = caja.costo;
+                        $("#fecha")[0].value = caja.fecha;
+                        $("#hora")[0].value = caja.hora;
 
-                        $("#formUsuarios").css({
+                        $("#btnRegistrarGastos").addClass("d-none")
+                        $("#btnModificarGastos").removeClass("d-none")
+
+                        $("#formGastos").css({
                             display: "flex",
                             position: "absolute"
                         })
@@ -96,10 +106,10 @@ export const ACCIONES = {
     },
 
     "eliminar": (index) => {
-        const nombreUsuario = $("*#rowUsuario")[index].children[0].textContent;
-        // console.log(nombreUsuario);
+        const nombreCliente = $("*#rowGasto")[index].children[0].textContent;
+        // console.log(nombreCliente);
         const datos = new FormData();
-        datos.append("id", nombreUsuario)
+        datos.append("id", nombreCliente)
         datos.append("accion", "eliminar");
 
         fetch("", {
@@ -120,7 +130,7 @@ export const ACCIONES = {
         datos.append("id", Id)
         datos.append("accion", "actualizar");
 
-        // console.log(nombreUsuarioAnterior);
+        // console.log(nombreClienteAnterior);
         // console.table(datos.entrie);
         fetch("", {
             method: 'POST',

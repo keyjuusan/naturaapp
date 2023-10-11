@@ -1,4 +1,4 @@
-<?php require_once ("./components/superiorHtml.php")?>
+<?php require_once("./components/superiorHtml.php") ?>
 
 <h2 class="text-center fs-11">Gastos</h2>
 
@@ -25,13 +25,20 @@
                 <input class="form-control " type="time" id="hora" name="hora" />
                 <span class="invalid-feedback" id="shora"></span>
             </div>
+        </div>
 
+        <div class="row">
             <div class="col">
                 <label class="form-label" for="costo">Costo:</label>
-                <input class="form-control " type="number" id="costo" name="costo" />
+                <input class="form-control " type="text" id="costo" name="costo" />
                 <span class="invalid-feedback" id="scosto"></span>
             </div>
 
+            <div class="col">
+                <label class="form-label" for="categoria">Categoria:</label>
+                <input class="form-control " type="text" id="categoria" name="categoria" />
+                <span class="invalid-feedback" id="scategoria"></span>
+            </div>
         </div>
 
         <div class="row">
@@ -45,6 +52,7 @@
         <div class="row">
             <div class="col d-flex flex-column justify-content-end">
                 <button type="button" class="w-100 btn btn-primary" id="btnRegistrarGastos" name="incluir">Registrar</button>
+                <button type="button" class="w-100 btn btn-primary d-none" id="btnModificarGastos" name="incluir">Modificar</button>
             </div>
         </div>
 
@@ -54,37 +62,21 @@
 <table class="table rounded-3 fs-8">
     <thead>
         <tr>
-        <th scope="col">#</th>
-            <th scope="col">categoria</th>
-            <th scope="col">fecha</th>
-            <th scope="col">hora</th>
+            <th scope="col">#</th>
             <th scope="col">descripcion</th>
+            <th scope="col">categoria</th>
+            <th scope="col">costo</th>
+            <th scope="col">hora</th>
+            <th scope="col">fecha</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
         </tr>
     </thead>
     <tbody id="tablaGastos">
-        <tr>
-            <th scope="row">1</th>
-            <td>servicio</td>
-            <td>15/02/23</td>
-            <td>1:23</td>
-            <td>publicidad</td>
 
-            <td>
-                <button class="btn-sm btn btn-warning ">
-                    <img src="./src/assets/img/edit-svgrepo-com.svg" alt="" width="15">
-                </button>
-            </td>
-            <td>
-                <button class="btn-sm btn btn-danger ">
-                    <img src="./src/assets/img/delete-svgrepo-com.svg" alt="" width="15">
-                </button>
-            </td>
-        </tr>
     </tbody>
 </table>
 
 <script type="module" src="./src/js/Gastos/ga_index.js"></script>
 
-<?php require_once ("./components/inferiorHtml.php")?>
+<?php require_once("./components/inferiorHtml.php") ?>

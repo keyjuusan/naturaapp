@@ -14,17 +14,25 @@ $(document).ready(()=>{
 
     agregarValidacion("presentacion",/^[0-9a-zA-Z\b]*$/,/^[0-9a-zA-Z\b]{3,}$/,"min 3 caracteres");
     
-    validarCampos("btnRegistrarProductos","cantidad presentacion nombre");
+   
 
     ACCIONES["consultar"]();
 
     $("#btnRegistrarProductos").on("click", (e) => {
-        e.preventDefault()
-        ACCIONES["registrar"]("formProductos")
+        e.preventDefault();
+        let puedeEnviar =  validarCampos("cantidad presentacion nombre");
+        if(puedeEnviar){
+            ACCIONES["registrar"]("formProductos");
+            $("#formProductos").hide();
+        }
     })
 
     $("#btnModificarProductos").on("click", (e) => {
         e.preventDefault()
-        ACCIONES["modificar"]("formProductos")
+        let puedeEnviar =  validarCampos("cantidad presentacion nombre");
+        if(puedeEnviar){
+            ACCIONES["modificar"]("formProductos");
+            $("#formProductos").hide();
+        }
     })
 })

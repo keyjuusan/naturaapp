@@ -16,19 +16,27 @@ $(document).ready(()=>{
 
     agregarValidacion("costo", /^[0-9\b][.]*$/, /^[0-9\b]{1,}$/,"min 7 y max 11 numeros");
     
-    validarCampos("btnRegistrarVentas","costo");
+    
 
     ACCIONES.consultarClientes();
     ACCIONES["consultar"]();
     
 
     $("#btnRegistrarVentas").on("click", (e) => {
-        e.preventDefault()
-        ACCIONES["registrar"]("formVentas")
+        e.preventDefault();
+        let puedeEnviar = validarCampos("costo");
+        if(puedeEnviar){
+            ACCIONES["registrar"]("formVentas");
+            $("#formVentas").hide();
+        }
     })
 
     $("#btnModificarVentas").on("click", (e) => {
         e.preventDefault()
-        ACCIONES["modificar"]("formVentas")
+        let puedeEnviar = validarCampos("costo");
+        if(puedeEnviar){
+            ACCIONES["modificar"]("formVentas");
+            $("#formVentas").hide();
+        }
     })
 })

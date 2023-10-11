@@ -15,18 +15,25 @@ $(document).ready(() => {
     agregarValidacion("telefono", /^[0-9\b]*$/, /^[0-9\b]{7,11}$/, "min 7 y max 11 numeros");
 
     //comportamiento visual
-    validarCampos("btnRegistrarClientes", "cedula nombre telefono");
 
     ACCIONES["consultar"]();
 
     $("#btnRegistrarClientes").on("click", (e) => {
-        e.preventDefault()
-        ACCIONES["registrar"]("formClientes")
+        e.preventDefault();
+        let puedeEnviar = validarCampos("cedula nombre telefono");
+        if(puedeEnviar){
+            ACCIONES["registrar"]("formClientes");
+            $("#formClientes").hide();
+        }
     })
 
     $("#btnModificarClientes").on("click", (e) => {
         e.preventDefault()
-        ACCIONES["modificar"]("formClientes")
+        let puedeEnviar = validarCampos("cedula nombre telefono");
+        if(puedeEnviar){
+            ACCIONES["modificar"]("formClientes");
+            $("#formClientes").hide();
+        }
     })
 
 })

@@ -68,10 +68,9 @@
 
             <div class="col-5  d-flex flex-column justify-content-end">
                 <button type="button" class="w-100 btn btn-primary" id="btnRegistrarProductos" name="incluir">Registrar</button>
+                <button type="button" class="w-100 btn btn-primary d-none" id="btnModificarProductos" name="incluir">Guardar Cambios</button>
             </div>
-            <div class="col-5  d-flex flex-column justify-content-end">
-                <button type="button" class="w-100 btn btn-primary" id="btnModificarProductos" name="incluir">Guardar Cambios</button>
-            </div>
+            
         </div>
     </div>
 </form>

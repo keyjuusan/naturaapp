@@ -1,14 +1,6 @@
-export function ocultarForm(formId,btnReg,btnMod) {
+export function ocultarForm(formId) {
 
-    $(`#${btnReg}`).click(e=>{
-        e.preventDefault()
-        $(`#${formId}`).hide();
-    });
-
-    $(`#${btnMod}`).click(e=>{
-        e.preventDefault()
-        $(`#${formId}`).hide();
-    });
+    
 
     $(document).on("click", (e) => {
         if ($(`#${formId}`).css("display") == "flex" && $(`#addClientes`)[0] != $(e)[0].target) {

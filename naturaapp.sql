@@ -83,6 +83,7 @@ DROP TABLE IF EXISTS `gastos`;
 CREATE TABLE `gastos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `categoria` varchar(30) NOT NULL,
+  `costo` float not null,
   `fecha` date NOT NULL,
   `hora` time NOT NULL,
   `descripcion` text,

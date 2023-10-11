@@ -24,18 +24,18 @@ if(is_file("./view/vw".$pagina.".php")){
                 $usuario->registrar();
                 break;
         
-            // case'actualizar':
-            //     $usuario->setNombre($_POST["nombre"]);
-            //     $usuario->setId($_POST["id"]);
-            //     $usuario->setCedula($_POST["cedula"]);
-            //     $usuario->setTelefono($_POST["telefono"]);
-            //     $usuario->actualizar();
-            //     break;
+            case'actualizar':
+                $usuario->setNombre($_POST["nombre"]);
+                $usuario->setId($_POST["id"]);
+                $usuario->setCargo($_POST["cargo"]);
+                $usuario->setContraseña($_POST["rcontraseña"]);
+                $usuario->actualizar();
+                break;
         
-            // case 'eliminar':
-            //     $usuario->setId($_POST["id"]);
-            //     $usuario->eliminar();
-            //     break;
+            case 'eliminar':
+                $usuario->setId($_POST["id"]);
+                $usuario->eliminar();
+                break;
             
             default:
                 # code...
