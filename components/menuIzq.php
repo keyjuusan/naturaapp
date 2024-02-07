@@ -35,5 +35,5 @@
         </div>
     </div>
 
-    <a href=""><img src="./src/assets/img/question-circle.svg" width="22" alt=""></a>
+    <img src="./src/assets/img/question-circle.svg" width="22" alt="">
 </nav>
