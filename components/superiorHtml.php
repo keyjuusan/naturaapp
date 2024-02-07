@@ -7,7 +7,9 @@
     <script src="./src/js/jquery.js"></script>
     <link rel="shortcut icon" href="./src/assets/img/undraw_nature_m5ll.svg" type="image/x-icon">
     <link href="./src/css/index.css" rel="stylesheet">
-    <title>Natura App</title>
+    <title>
+        <?php echo $pagina ?>
+    </title>
 </head>
 
 <body class="vh-100">
@@ -17,4 +19,5 @@
         require("./components/menuIzq.php");
         ?>
 
-        <div id="vwBody" class="d-flex flex-column w-100 container h-100 gap-3 pt-4 align-items-center" style="overflow: auto;">
+        <div id="vwBody" class="d-flex flex-column w-100 container h-100 gap-3 pt-4 align-items-center"
+            style="overflow: auto;">

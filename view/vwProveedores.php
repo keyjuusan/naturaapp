@@ -1,5 +1,3 @@
-<?php require_once ("./components/superiorHtml.php")?>
-
 <h2 class="text-center fs-11">Proveedores</h2>
 <div class="d-flex justify-content-center">
     <!-- <a href="." class="p_2 rounded-5 h-2rem w-2rem d-flex justify-content-center align-items-center start-0 ms-5 position-absolute bg-white shadow">
@@ -13,14 +11,7 @@
 
 <form method="post" action="" id="formProveedores" class="col-8 p-2 h-auto align-items-center bg-white rounded-3 bg-opacity-25 shadow" style="display: none;">
     <div class=" d-flex flex-column gap-2 w-100">
-        <!-- empresa, nombre y telefono -->
-        <div class="row">
-            <div class="col-6">
-            <label class="form-label" for="codigo">Codigo:</label>
-                <input class="form-control " type="text" id="codigo" name="codigo" />
-                <span class="invalid-feedback" id="scodigo"></span>
-            </div>
-        </div>
+        
         <div class="row gap-2 d-flex">
 
             <div class="col col-lg-3">
@@ -58,7 +49,10 @@
         </tbody>
     </table>
     <span class="loader" id="loader"></span>
+    <div class="flex gap-2" >
+        <button id="btnAnterior" class="text-[1.5rem] flex items-center justify-center " > < </button>   
+        <input id="pagina" type="number" value="1" class="w-[2rem] flex" >
+        <button id="btnSiguiente" class="text-[1.5rem] flex items-center justify-center " > > </button>
+    </div>
 
 <script type="module" src="./src/js/Proveedores/prov_index.js"></script>
-
-<?php require_once ("./components/inferiorHtml.php")?>

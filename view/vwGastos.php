@@ -1,5 +1,3 @@
-<?php require_once("./components/superiorHtml.php") ?>
-
 <h2 class="text-center fs-11">Gastos</h2>
 
 <div class="d-flex justify-content-center">
@@ -29,9 +27,9 @@
 
         <div class="row">
             <div class="col">
-                <label class="form-label" for="costo">Costo:</label>
-                <input class="form-control " type="text" id="costo" name="costo" />
-                <span class="invalid-feedback" id="scosto"></span>
+                <label class="form-label" for="precio">Precio:</label>
+                <input class="form-control " type="text" id="precio" name="precio" />
+                <span class="invalid-feedback" id="sprecio"></span>
             </div>
 
             <div class="col">
@@ -65,7 +63,7 @@
             <th scope="col">#</th>
             <th scope="col">descripcion</th>
             <th scope="col">categoria</th>
-            <th scope="col">costo</th>
+            <th scope="col">precio</th>
             <th scope="col">hora</th>
             <th scope="col">fecha</th>
             <th scope="col">Editar</th>
@@ -76,7 +74,11 @@
 
     </tbody>
 </table>
+<span class="loader" id="loader"></span>
+    <div class="flex gap-2" >
+        <button id="btnAnterior" class="text-[1.5rem] flex items-center justify-center " > < </button>   
+        <input id="pagina" type="number" value="1" class="w-[2rem] flex" >
+        <button id="btnSiguiente" class="text-[1.5rem] flex items-center justify-center " > > </button>
+    </div>
 
 <script type="module" src="./src/js/Gastos/ga_index.js"></script>
-
-<?php require_once("./components/inferiorHtml.php") ?>

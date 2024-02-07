@@ -1,16 +1,9 @@
-
 <?php
-$pagina = "Principal";
 
-if (!empty($_GET['pagina'])){
-    $pagina = $_GET['pagina'];
-}
+$pagina = empty($_GET['pagina']) ? "Principal" : $_GET['pagina'];
 
-if(file_exists("./controller/c".$pagina.".php")){
-    require("./controller/c".$pagina.".php");
-}else{
+if (file_exists("./controller/cGeneral.php")) {
+    require("./controller/cGeneral.php");
+} else {
     echo "error al traer el controlador al index";
 }
-
-?>
-        

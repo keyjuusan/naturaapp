@@ -1,5 +1,3 @@
-<?php require_once ("./components/superiorHtml.php")?>
-
 <h2 class="text-center fs-11">Clientes</h2>
 
 <div class="d-flex justify-content-center">
@@ -56,9 +54,11 @@
         </tbody>
     </table>
     <span class="loader" id="loader"></span>
+    <div class="flex gap-2" >
+        <button id="btnAnterior" class="text-[1.5rem] flex items-center justify-center " > < </button>   
+        <input id="pagina" type="number" value="1" class="w-[2rem] flex" >
+        <button id="btnSiguiente" class="text-[1.5rem] flex items-center justify-center " > > </button>
+    </div>
 
-<div id="loading"></div>
 
 <script type="module" src="./src/js/Clientes/cl_index.js"></script>
-
-<?php require_once ("./components/inferiorHtml.php")?>

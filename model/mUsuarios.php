@@ -1,89 +1,93 @@
 <?php
-require_once("mDataBase.php");
+require_once("mPersona.php");
 
-class mUsuarios extends DataBase{
-    private $nombre;
-    private $id;
+class mUsuarios extends mPersona
+{
     private $cargo;
     private $contraseña;
-    
-    public function consultar(){
+
+    public function registrar()
+    {
 
         try {
-            $cConsulto = $this->conexion()->query("SELECT * FROM usuarios");
-            echo json_encode($cConsulto->fetchAll());
+            $this->conexion()->query("INSERT INTO usuarios(nombre,cargo,contraseña) VALUES ('" . $this->getNombre() . "','" . $this->getCargo() . "','" . $this->getContraseña() . "')");
+
+            $respuesta["mensaje"] = "Datos guardados correctamente";
+            $respuesta["bol"] = true;
+            $respuesta["error"] = "";
+
+            echo json_encode($respuesta);
+
         } catch (PDOException $e) {
-            echo json_encode("Error al consultar en la base de datos: ".$e->getMessage());
+            $respuesta["mensaje"] = "Error al insertar datos";
+            $respuesta["bol"] = false;
+            $respuesta["error"] = "Error al insertar datos: {$e->getMessage()}";
+
+            echo json_encode($respuesta);
         }
-        
+
     }
 
-    public function registrar(){
-
+    public function actualizar()
+    {
         try {
-            $cEnvio = $this->conexion()->query("INSERT INTO usuarios(nombre,cargo,contraseña) VALUES 
-        ('".$this->getNombre()."','".$this->getCargo()."','".$this->getContraseña()."')");
+            $this->conexion()->query("UPDATE usuarios set nombre='" . $this->getNombre() . "',cargo='" . $this->getCargo() . "',contraseña='" . $this->getcontraseña() . "' WHERE id='" . $this->getId() . "'");
 
-            echo "Datos guardados correctamente";
+            $respuesta["mensaje"] = "Datos actualizados correctamente";
+            $respuesta["bol"] = true;
+            $respuesta["error"] = "";
+
+            echo json_encode($respuesta);
 
         } catch (PDOException $e) {
+            $respuesta["mensaje"] = "Error al actualizar datos";
+            $respuesta["bol"] = false;
+            $respuesta["error"] = "Error al actualizar datos: {$e->getMessage()}";
+
+            echo json_encode($respuesta);
+        }
+
+    }
+
+    public function eliminar()
+    {
+        try {
+            $this->conexion()->query("DELETE FROM usuarios WHERE id='" . $this->getId() . "'");
             
-            echo "Error al insertar datos: ".$e->getMessage();
+            $respuesta["mensaje"] = "Datos eliminados correctamente";
+            $respuesta["bol"] = true;
+            $respuesta["error"] = "";
+
+            echo json_encode($respuesta);
+
+        } catch (PDOException $e) {
+            $respuesta["mensaje"] = "Error al eliminar datos";
+            $respuesta["bol"] = false;
+            $respuesta["error"] = "Error al eliminar datos: {$e->getMessage()}";
+
+            echo json_encode($respuesta);
         }
 
-        // $this->conexion()->close();
     }
 
-    public function actualizar(){
-        try{
-            $this->conexion()->query("UPDATE usuarios set nombre='".$this->getNombre()."',cargo='".$this->getCargo()."',contraseña='".$this->getcontraseña()."' WHERE id='".$this->getId()."'");
 
-            echo "Datos actualizados correctamente";
-        }catch(PDOException $e) {
-            echo "Error al actualizar los datos: ".$e->getMessage();
-        }
 
-        // $this->conexion()->close();
-    }
-
-    public function eliminar(){
-        try{
-            $this->conexion()->query("DELETE FROM usuarios WHERE id='".$this->getId()."'");
-            echo "Datos eliminados correctamente";
-        }catch(PDOException $e) {
-            echo "Error al eliminar los datos: ".$e->getMessage();
-        }
-
-        // $this->conexion()->close();
-    }
-    
-    public function setNombre($nombre){
-        $this->nombre = $nombre;
-    }
-    public function getNombre(){
-        return $this->nombre;
-    }
-
-    public function setId($id){
-        $this->id = $id;
-    }
-    public function getId(){
-        return $this->id;
-    }
-
-    public function setCargo($cargo){
+    public function setCargo($cargo)
+    {
         $this->cargo = $cargo;
     }
-    public function getCargo(){
+    public function getCargo()
+    {
         return $this->cargo;
     }
-    public function setContraseña($contraseña){
+    public function setContraseña($contraseña)
+    {
         $this->contraseña = $contraseña;
     }
-    public function getContraseña() {
+    public function getContraseña()
+    {
         return $this->contraseña;
     }
-    
+
 
 }
-?>

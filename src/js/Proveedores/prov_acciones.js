@@ -1,46 +1,52 @@
-let Codigo=""
+let Id = "";
+let nCantidad = 3;
+let Min = 0;
 export const ACCIONES = {
-    "registrar": (formElementId) => {
-        const datos = new FormData($(`#${formElementId}`)[0]);
-        datos.append("accion", "registrar");
+  registrar: (formElementId) => {
+    const datos = new FormData($(`#${formElementId}`)[0]);
+    datos.append("accion", "registrar");
 
-        fetch("", {
-            method: 'POST',
-            body: datos
-        })
-            .then((res) => res.text())
-            .then(data => {
-                console.log(data)
-                ACCIONES["consultar"]();
-            });
+    fetch("", {
+      method: "POST",
+      body: datos,
+    })
+      .then((res) => res.text())
+      .then((data) => {
+        console.log(data);
+        ACCIONES["consultar"](Min,nCantidad);
+        notificacion("vwBody", data.mensaje, data.bol);
+      })
+      .catch((err) => {
+        notificacion("vwBody", err.mensaje, err.bol);
+      });
+  },
 
-    },
+  consultar: (min, cantidad) => {
+    Min = min;
+    nCantidad = cantidad;
+    const datos = new FormData();
+    datos.append("min", min);
+    datos.append("cantidad", cantidad);
+    datos.append("accion", "consultar");
 
-    "consultar": () => {
-        const datos = new FormData();
-        datos.append("accion", "consultar");
+    fetch("", {
+      method: "POST",
+      body: datos,
+    })
+      .then((res) => {
+        if (res.ok) {
+          $("#loader").hide();
 
-        fetch("", {
-            method: 'POST',
-            body: datos
-        })
-            .then((res) => {
-
-                if (res.ok) {
-                    $("#loader").hide()
-
-
-                    return res.json()
-                } else {
-                    throw new Error('Error en la conexion');
-                }
-
-            })
-            .then(data => {
-                $("#tablaProveedores")[0].innerHTML = "";
-                data.map(fila => {
-                    // console.table(fila)
-                    $("#tablaProveedores")[0].innerHTML += `<tr id="rowProveedor">
+          return res.json();
+        } else {
+          throw new Error("Error en la conexion");
+        }
+      })
+      .then((data) => {
+        $("#tablaProveedores")[0].innerHTML = "";
+        data.map((fila) => {
+          // console.table(fila)
+          $("#tablaProveedores")[0].innerHTML += `<tr id="rowProveedor">
             <th scope="row">${fila[0]}</th>
             <td>${fila[2]}</td>
             <td>${fila[1]}</td>
@@ -54,77 +60,78 @@ export const ACCIONES = {
                     <img src="./src/assets/img/delete-svgrepo-com.svg" alt="" width="15">
                 </button>
             </td>
-        </tr>`
-                });
+        </tr>`;
+        });
 
-                $("*#btnEliminar").map((codigo, value) => {
-                    $(value).click(() => {
-                        ACCIONES["eliminar"](codigo);
+        $("*#btnEliminar").map((id, value) => {
+          $(value).click(() => {
+            ACCIONES["eliminar"](id);
+          });
+        });
 
+        $("*#btnEditar").map((id, value) => {
+          $(value).click(() => {
+            $("#id").attr("disabled", "");
+            const fila = Object.values($("*#rowProveedor")[id].children);
+            // console.log(typeof fila)
+            // const MAX_LENGTH = fila.length - 3;
 
-                    });
-                });
+            $("#empresa")[0].value = fila[1].textContent;
+            Id = fila[0].textContent;
+            $("#telefono")[0].value = fila[2].textContent;
 
-                $("*#btnEditar").map((codigo, value) => {
-                    $(value).click(() => {
-                        $("#codigo").attr("disabled","")
-                        const fila = Object.values($("*#rowProveedor")[codigo].children);
-                        // console.log(typeof fila)
-                        // const MAX_LENGTH = fila.length - 3;
+            $("#btnRegistrarProveedores").addClass("d-none");
+            $("#btnModificarProveedores").removeClass("d-none");
 
-                        $("#empresa")[0].value = fila[1].textContent;
-                        Codigo = fila[0].textContent;
-                        $("#codigo")[0].value = fila[0].textContent;
-                        $("#telefono")[0].value = fila[2].textContent;
-
-                        $("#btnRegistrarProveedores").addClass("d-none")
-                        $("#btnModificarProveedores").removeClass("d-none")
-
-                        $("#formProveedores").css({
-                            display: "flex",
-                            position: "absolute"
-                        })
-
-                    });
-                })
+            $("#formProveedores").css({
+              display: "flex",
+              position: "absolute",
             });
-    },
+          });
+        });
+      });
+  },
 
-    "eliminar": (index) => {
-        const codigo = $("*#rowProveedor")[index].children[0].textContent;
-        // console.log(codigo);
-        const datos = new FormData();
-        datos.append("codigo", codigo)
-        datos.append("accion", "eliminar");
+  eliminar: (index) => {
+    const id = $("*#rowProveedor")[index].children[0].textContent;
+    // console.log(id);
+    const datos = new FormData();
+    datos.append("id", id);
+    datos.append("accion", "eliminar");
 
-        fetch("", {
-            method: 'POST',
-            body: datos
-        })
-            .then((res) => res.text())
-            .then(data => {
-                console.log(data)
-                ACCIONES["consultar"]();
-            })
+    fetch("", {
+      method: "POST",
+      body: datos,
+    })
+      .then((res) => res.text())
+      .then((data) => {
+        console.log(data);
+        ACCIONES["consultar"](Min,nCantidad);
+        notificacion("vwBody", data.mensaje, data.bol);
+      })
+      .catch((err) => {
+        notificacion("vwBody", err.mensaje, err.bol);
+      });
+  },
+  modificar: (formElementId) => {
+    const datos = new FormData($(`#${formElementId}`)[0]);
+    datos.append("id", Id);
+    datos.append("accion", "actualizar");
 
-
-
-    },
-    "modificar": (formElementId) => {
-        const datos = new FormData($(`#${formElementId}`)[0]);
-        datos.append("codigo", Codigo)
-        datos.append("accion", "actualizar");
-
-        // console.log(empresaProveedorAnterior);
-        // console.table(datos.entrie);
-        fetch("", {
-            method: 'POST',
-            body: datos
-        })
-            .then((res) => res.text())
-            .then(data => {
-                console.log(data)
-                ACCIONES["consultar"]();
-            });
-    }
+    // console.log(empresaProveedorAnterior);
+    // console.table(datos.entrie);
+    fetch("", {
+      method: "POST",
+      body: datos,
+    })
+      .then((res) => res.text())
+      .then((data) => {
+        console.log(data);
+        ACCIONES["consultar"](Min,nCantidad);
+        notificacion("vwBody", data.mensaje, data.bol);
+      })
+      .catch((err) => {
+        notificacion("vwBody", err.mensaje, err.bol);
+      });
+  },
 };

@@ -1,5 +1,3 @@
-<?php require_once ("./components/superiorHtml.php")?>
-
 <h2 class="text-center fs-11">Ventas</h2>
 
 <div class="d-flex justify-content-center">
@@ -68,11 +66,13 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="">Productos</th>
-            <th scope="">Precio</th>
-            <th scope="">Cliente</th>
-            <th scope="">Fecha</th>
-            <th scope="">Hora</th>
+            <th scope="">descripcion</th>
+            <th scope="">precio</th>
+            <th scope="">fecha</th>
+            <th scope="">hora</th>
+            <th scope="">id_producto</th>
+            <th scope="">id_empleado</th>
+            <th scope="">id_cliente</th>
             <th scope="col">Editar</th>
             <th scope="col">Eliminar</th>
         </tr>
@@ -81,7 +81,10 @@
         </tbody>
     </table>
     <span class="loader" id="loader"></span>
+    <div class="flex gap-2" >
+        <button id="btnAnterior" class="text-[1.5rem] flex items-center justify-center " > < </button>   
+        <input id="pagina" type="number" value="1" class="w-[2rem] flex" >
+        <button id="btnSiguiente" class="text-[1.5rem] flex items-center justify-center " > > </button>
+    </div>
 
 <script type="module" src="./src/js/Ventas/ve_index.js"></script>
-
-<?php require_once ("./components/inferiorHtml.php")?>

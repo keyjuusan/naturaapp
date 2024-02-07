@@ -30,7 +30,7 @@
             </a>
             <a class="d-flex flex-row gap-2 text-decoration-none fs-8 text-white" href="?pagina=Productos">
                 <img width="24" src="./src/assets/img/box-seam.svg" alt="">
-                <p class="w-2_5rem m-0 d-flex align-items-center">inventario</p>
+                <p class="w-2_5rem m-0 d-flex align-items-center">Inventario</p>
             </a>
         </div>
     </div>

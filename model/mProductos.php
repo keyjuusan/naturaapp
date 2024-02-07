@@ -1,116 +1,144 @@
 <?php
-require_once("mDataBase.php");
+require_once("mConsultable.php");
 
-class mproductos extends DataBase{
+class mproductos extends Consultable
+{
     private $id;
     private $nombre;
     private $categoria;
-    private $cantidad;
+    private $disponibles;
     private $descripcion;
     private $presentacion;
     private $precio;
-    
-    public function consultar(){
-        $cConsulto = $this->conexion()->query("SELECT * FROM productos");
- 
-        if($cConsulto){
-            // echo $cConsulto->fetch_all()[0][0];
-            echo json_encode($cConsulto->fetchAll());
-        }else{
-            echo 'No se pudo realizar la consulta';
+
+    public function registrar()
+    {
+        try {
+            $cEnvio = $this->conexion()->query("INSERT INTO productos(nombre,categoria,disponibles,descripcion,presentacion,precio) VALUES ('" . $this->getNombre() . "','" . $this->getCategoria() . "'," . $this->getDisponibles() . ",'" . $this->getDescripcion() . "','" . $this->getPresentacion() . "'," . $this->getPrecio() . ")");
+
+            $respuesta["mensaje"] = "Datos guardados correctamente";
+            $respuesta["bol"] = true;
+            $respuesta["error"] = "";
+
+            echo json_encode($respuesta);
+
+        } catch (PDOException $e) {
+            $respuesta["mensaje"] = "Error al insertar datos";
+            $respuesta["bol"] = false;
+            $respuesta["error"] = "Error al insertar datos: {$e->getMessage()}";
+
+            echo json_encode($respuesta);
         }
 
-        // $this->conexion()->close();
     }
 
-    public function registrar(){
-        $cEnvio = $this->conexion()->query("INSERT INTO productos(nombre,categoria,cantidad,descripcion,presentacion,precio) VALUES 
-        ('".$this->getNombre()."','".$this->getCategoria()."',".$this->getCantidad().",'".$this->getDescripcion()."','".$this->getPresentacion()."',".$this->getPrecio().")");
+    public function actualizar()
+    {
+        try {
+            $cActualizo = $this->conexion()->query("UPDATE productos set nombre='" . $this->getNombre() . "', categoria='" . $this->getCategoria() . "', disponibles=" . $this->getDisponibles() . ", descripcion='" . $this->getDescripcion() . "', presentacion='" . $this->getPresentacion() . "', precio=" . $this->getPrecio() . " WHERE id=" . $this->getId());
 
-        if($cEnvio){
-            echo "Datos guardados correctamente";
-        }else {
-            echo "Error al insertar datos";
+            $respuesta["mensaje"] = "Datos actualizados correctamente";
+            $respuesta["bol"] = true;
+            $respuesta["error"] = "";
+
+            echo json_encode($respuesta);
+
+        } catch (PDOException $e) {
+            $respuesta["mensaje"] = "Error al actualizar datos";
+            $respuesta["bol"] = false;
+            $respuesta["error"] = "Error al actualizar datos: {$e->getMessage()}";
+
+            echo json_encode($respuesta);
         }
 
-        // $this->conexion()->close();
     }
 
-    public function actualizar(){
-        $cActualizo = $this->conexion()->query("UPDATE productos set nombre='".$this->getNombre()."', categoria='".$this->getCategoria()."', cantidad=".$this->getCantidad().", descripcion='".$this->getDescripcion()."', presentacion='".$this->getPresentacion()."', precio=".$this->getPrecio()." WHERE id=".$this->getId());
+    public function eliminar()
+    {
+        try {
+            $cElimino = $this->conexion()->query("DELETE FROM productos WHERE id='" . $this->getId() . "'");
 
-        if($cActualizo){
-            echo "Datos actualizados correctamente";
-        }else {
-            echo "Error al actualizar los datos";
+            $respuesta["mensaje"] = "Datos eliminados correctamente";
+            $respuesta["bol"] = true;
+            $respuesta["error"] = "";
+
+            echo json_encode($respuesta);
+
+        } catch (PDOException $e) {
+            $respuesta["mensaje"] = "Error al eliminar datos";
+            $respuesta["bol"] = false;
+            $respuesta["error"] = "Error al eliminar datos: {$e->getMessage()}";
+
+            echo json_encode($respuesta);
         }
 
-        // $this->conexion()->close();
     }
 
-    public function eliminar(){
-        $cElimino = $this->conexion()->query("DELETE FROM productos WHERE id='".$this->getId()."'");
-
-        if($cElimino){
-            echo "Datos eliminados correctamente";
-        }else {
-            echo "Error al eliminar los datos";
-        }
-
-        // $this->conexion()->close();
-    }
-    
-    public function setNombre($nombre){
+    public function setNombre($nombre)
+    {
         $this->nombre = $nombre;
     }
-    public function getNombre(){
+    public function getNombre()
+    {
         return $this->nombre;
     }
 
-    public function setId($id){
+    public function setId($id)
+    {
         $this->id = $id;
     }
-    public function getId(){
+    public function getId()
+    {
         return $this->id;
     }
 
-    public function getCategoria() {
+    public function getCategoria()
+    {
         return $this->categoria;
     }
 
-    public function setCategoria($categoria) {
+    public function setCategoria($categoria)
+    {
         $this->categoria = $categoria;
     }
 
-    public function getCantidad() {
-        return $this->cantidad;
+    public function getDisponibles()
+    {
+        return $this->disponibles;
     }
 
-    public function setCantidad($cantidad) {
-        $this->cantidad = $cantidad;
+    public function setDisponibles($disponibles)
+    {
+        $this->disponibles = $disponibles;
     }
 
-    public function getDescripcion() {
+    public function getDescripcion()
+    {
         return $this->descripcion;
     }
 
-    public function setDescripcion($descripcion) {
+    public function setDescripcion($descripcion)
+    {
         $this->descripcion = $descripcion;
     }
 
-    public function getPresentacion() {
+    public function getPresentacion()
+    {
         return $this->presentacion;
     }
 
-    public function setPresentacion($presentacion) {
+    public function setPresentacion($presentacion)
+    {
         $this->presentacion = $presentacion;
     }
 
-    public function getPrecio() {
+    public function getPrecio()
+    {
         return $this->precio;
     }
 
-    public function setPrecio($precio) {
+    public function setPrecio($precio)
+    {
         $this->precio = $precio;
     }
 }

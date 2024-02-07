@@ -1,5 +1,3 @@
-<?php require_once("./components/superiorHtml.php") ?>
-
 <h2 class="text-center fs-11">Compras</h2>
 
 <div class="d-flex justify-content-center">
@@ -29,9 +27,9 @@
 
         <div class="row gap-2 d-flex justify-content-center">
             <div class="col">
-                <label class="form-label" for="costo">Costo:</label>
-                <input class="form-control " type="number" id="costo" name="costo" />
-                <span class="invalid-feedback" id="scosto"></span>
+                <label class="form-label" for="precio">Precio:</label>
+                <input class="form-control " type="number" id="precio" name="precio" />
+                <span class="invalid-feedback" id="sprecio"></span>
             </div>
             <div class="col">
                 <label class="form-label" for="proveedores">Proveedor:</label>
@@ -62,11 +60,11 @@
 <table class="table rounded-3 fs-8">
     <thead>
         <tr>
-            <!-- fecha, hora, descripcion y costo-->
+            <!-- fecha, hora, descripcion y precio-->
             <th scope="col">#</th>
             <th scope="col">Proveedor</th>
             <th scope="col">Descripcion</th>
-            <th scope="col">Costo</th>
+            <th scope="col">Precio</th>
             <th scope="col">Fecha</th>
             <th scope="col">Hora</th>
             <th>Editar</th>
@@ -78,7 +76,11 @@
         
     </tbody>
 </table>
+<span class="loader" id="loader"></span>
+    <div class="flex gap-2" >
+        <button id="btnAnterior" class="text-[1.5rem] flex items-center justify-center " > < </button>   
+        <input id="pagina" type="number" value="1" class="w-[2rem] flex" >
+        <button id="btnSiguiente" class="text-[1.5rem] flex items-center justify-center " > > </button>
+    </div>
 
 <script type="module" src="./src/js/Compras/co_index.js"></script>
-
-<?php require_once("./components/inferiorHtml.php") ?>

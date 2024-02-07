@@ -1,89 +1,67 @@
 <?php
-require_once("mDataBase.php");
+require_once("mPersona.php");
 
-class mClientes extends DataBase{
-    private $nombre;
-    private $id;
-    private $cedula;
-    private $telefono;
-    
-    public function consultar(){
-        $cConsulto = $this->conexion()->query("SELECT * FROM clientes");
- 
-        if($cConsulto){
-            // echo $cConsulto->fetch_all()[0][0];
-            echo json_encode($cConsulto->fetchAll());
-        }else{
-            echo 'No se pudo realizar la consulta';
+class mClientes extends mPersona
+{
+    public function registrar()
+    {
+        try {
+            $cEnvio = $this->conexion()->query("INSERT INTO clientes(nombre,telefono,cedula) VALUES ('" . $this->getNombre() . "'," . $this->getTelefono() . "," . $this->getCedula() . ")");
+            
+            $respuesta["mensaje"] = "Datos guardados correctamente";
+            $respuesta["bol"] = true;
+            $respuesta["error"] = "";
+
+            echo json_encode($respuesta);
+
+        } catch (PDOException $e) {
+            $respuesta["mensaje"] = "Error al insertar datos";
+            $respuesta["bol"] = false;
+            $respuesta["error"] = "Error al insertar datos: {$e->getMessage()}";
+
+            echo json_encode($respuesta);
         }
 
-        // $this->conexion()::;
     }
 
-    public function registrar(){
-        $cEnvio = $this->conexion()->query("INSERT INTO clientes(nombre,telefono,cedula) VALUES 
-        ('".$this->nombre."',".$this->telefono.",".$this->cedula.")");
+    public function actualizar()
+    {
+        try {
+            $cActualizo = $this->conexion()->query("UPDATE clientes set nombre='" . $this->getNombre() . "',cedula=" . $this->getCedula() . ",telefono=" . $this->getTelefono() . " WHERE id='" . $this->getId() . "'");
 
-        if($cEnvio){
-            echo "Datos guardados correctamente";
-        }else {
-            echo "Error al insertar datos";
+            $respuesta["mensaje"] = "Datos actualizados correctamente";
+            $respuesta["bol"] = true;
+            $respuesta["error"] = "";
+
+            echo json_encode($respuesta);
+
+        } catch (PDOException $e) {
+            $respuesta["mensaje"] = "Error al actualizar datos";
+            $respuesta["bol"] = false;
+            $respuesta["error"] = "Error al actualizar datos: {$e->getMessage()}";
+
+            echo json_encode($respuesta);
         }
 
-        // $this->conexion()->close();
     }
 
-    public function actualizar(){
-        $cActualizo = $this->conexion()->query("UPDATE clientes set nombre='".$this->getNombre()."',cedula=".$this->getCedula().",telefono=".$this->getTelefono()." WHERE id='".$this->getId()."'");
+    public function eliminar()
+    {
+        try {
+            $cElimino = $this->conexion()->query("DELETE FROM clientes WHERE id='" . $this->getId() . "'");
+            
+            $respuesta["mensaje"] = "Datos eliminados correctamente";
+            $respuesta["bol"] = true;
+            $respuesta["error"] = "";
 
-        if($cActualizo){
-            echo "Datos actualizados correctamente";
-        }else {
-            echo "Error al actualizar los datos";
+            echo json_encode($respuesta);
+
+        } catch (PDOException $e) {
+            $respuesta["mensaje"] = "Error al eliminar datos";
+            $respuesta["bol"] = false;
+            $respuesta["error"] = "Error al eliminar datos: {$e->getMessage()}";
+
+            echo json_encode($respuesta);
         }
-
-        // $this->conexion()->close();
     }
-
-    public function eliminar(){
-        $cElimino = $this->conexion()->query("DELETE FROM clientes WHERE id='".$this->getId()."'");
-
-        if($cElimino){
-            echo "Datos eliminados correctamente";
-        }else {
-            echo "Error al eliminar los datos";
-        }
-
-        // $this->conexion()->close();
-    }
-    
-    public function setNombre($nombre){
-        $this->nombre = $nombre;
-    }
-    public function getNombre(){
-        return $this->nombre;
-    }
-
-    public function setId($id){
-        $this->id = $id;
-    }
-    public function getId(){
-        return $this->id;
-    }
-
-    public function setCedula($cedula){
-        $this->cedula = $cedula;
-    }
-    public function getCedula(){
-        return $this->cedula;
-    }
-    public function setTelefono($telefono){
-        $this->telefono = $telefono;
-    }
-    public function getTelefono() {
-        return $this->telefono;
-    }
-    
-
 }
-?>
