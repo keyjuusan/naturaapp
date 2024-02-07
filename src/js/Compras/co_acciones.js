@@ -1,3 +1,5 @@
+import { notificacion } from "../notificacion.js";
+
 let Id = "";
 let datosConsulta = [];
 const allProveedores = [];

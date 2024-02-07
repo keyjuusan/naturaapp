@@ -28,9 +28,9 @@
 
         <div class="row">
             <div class="col">
-                <label class="form-label" for="costo">Costo:</label>
-                <input class="form-control " type="text" id="costo" name="costo" />
-                <span class="invalid-feedback" id="scosto"></span>
+                <label class="form-label" for="precio">Precio:</label>
+                <input class="form-control " type="text" id="precio" name="precio" />
+                <span class="invalid-feedback" id="sprecio"></span>
             </div>
             
             <div class="col">

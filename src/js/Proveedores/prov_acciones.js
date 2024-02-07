@@ -1,3 +1,5 @@
+import { notificacion } from "../notificacion.js";
+
 let Id = "";
 let nCantidad = 3;
 let Min = 0;
