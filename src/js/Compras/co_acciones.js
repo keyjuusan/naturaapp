@@ -17,7 +17,7 @@ export const ACCIONES = {
       method: "POST",
       body: FD,
     })
-      .then((res) => res.text())
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
         ACCIONES["consultar"](Min,nCantidad);
@@ -139,7 +139,7 @@ export const ACCIONES = {
       method: "POST",
       body: datos,
     })
-      .then((res) => res.text())
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
         ACCIONES["consultar"](Min,nCantidad);
@@ -160,7 +160,7 @@ export const ACCIONES = {
       method: "POST",
       body: datos,
     })
-      .then((res) => res.text())
+      .then((res) => res.json())
       .then((data) => {
         console.log(data);
         ACCIONES["consultar"](Min,nCantidad);

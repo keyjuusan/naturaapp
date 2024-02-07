@@ -17,7 +17,7 @@ switch ($accion) {
         $horaCortada = substr($_POST["hora"], 0, 8);
 
         $venta->setDescripcion($_POST["descripcion"]);
-        $venta->setPrecio($_POST["costo"]);
+        $venta->setPrecio($_POST["precio"]);
         $venta->setFecha($_POST["fecha"]);
         $venta->setHora($horaCortada);
         $venta->setClienteId($_POST["clientes"]);
@@ -27,7 +27,7 @@ switch ($accion) {
     case 'actualizar':
         $venta->setId($_POST["id"]);
         $venta->setDescripcion($_POST["descripcion"]);
-        $venta->setPrecio($_POST["costo"]);
+        $venta->setPrecio($_POST["precio"]);
         $venta->setFecha($_POST["fecha"]);
         $venta->setHora($_POST["hora"]);
         $venta->setClienteId($_POST["clientes"]);
