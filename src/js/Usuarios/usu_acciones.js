@@ -15,6 +15,7 @@ export const ACCIONES = {
     })
       .then((res) => res.json())
       .then((data) => {
+        
         console.log(data);
         ACCIONES["consultar"](Min,nCantidad);
         notificacion("vwBody", data.mensaje, data.bol);
