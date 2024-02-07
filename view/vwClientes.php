@@ -33,7 +33,7 @@
             </div>
 
             <div class="row d-flex flex-column justify-content-end">
-                <button type="submit" class="w-100 d-none btn btn-primary " id="btnModificarClientes" name="incluir" style="top:32px;">Editar</button>
+                <button type="submit" class="w-100 d-none btn btn-primary " id="btnModificarClientes" name="incluir" style="top:32px;">Modificar</button>
             </div>
         </div>
     </div>

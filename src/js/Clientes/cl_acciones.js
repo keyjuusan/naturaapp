@@ -45,7 +45,7 @@ export const ACCIONES = {
       })
       .then((data) => {
         $("#tablaClientes")[0].innerHTML = "";
-        console.log(data)
+        
         data.map((fila) => {
           // console.table(fila)
           $("#tablaClientes")[0].innerHTML += `<tr id="rowCliente">
